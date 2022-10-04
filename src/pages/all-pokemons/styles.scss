@@ -1,0 +1,34 @@
+.pokemons-container{
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 30px;
+    gap: 30px;
+}
+
+.message-error{
+    font-size: 18px;
+    color: rgb(169, 169, 169);
+    padding: 30px;
+    width: 1140px;
+    margin: 0 auto;
+}
+
+@media only screen and (min-width: 600px) {
+    .pokemons-container{
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media only screen and (min-width: 880px) {
+    .pokemons-container{
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .pokemons-container{
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        width: 1140px;
+        margin: 0 auto;
+    }
+}

@@ -1,0 +1,21 @@
+.text-field-container{
+    display: flex;
+    justify-content: flex-start;
+    padding: 0rem 30px;
+    .MuiFormControl-root{
+        min-width: 290px;
+    }
+    .MuiSvgIcon-root{
+        cursor: pointer;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .text-field-container{
+        width: 1140px;
+        margin: 0 auto;
+        .MuiFormControl-root{
+            min-width: 340px;
+        }
+    }
+}
