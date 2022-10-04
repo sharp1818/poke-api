@@ -1,8 +1,15 @@
+.download-button-container{
+    padding: 0 30px;
+}
 .infinite-scroll-message{
     padding: 30px;
 }
 @media only screen and (min-width: 1200px) {
     .infinite-scroll-message{
+        width: 1140px;
+        margin: 0 auto;
+    }
+    .download-button-container{
         width: 1140px;
         margin: 0 auto;
     }
