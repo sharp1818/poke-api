@@ -9,7 +9,6 @@ import FavPokemons from './pages/fav-pokemons';
 function App() {
   const location = useLocation();
   const currentPath = location.pathname;
-
   return (
     <div className="App">
       <Header />
