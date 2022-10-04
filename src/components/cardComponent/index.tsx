@@ -80,7 +80,7 @@ function CardComponent({ pokemonName, url }: Pokemon) {
             alt={pokemonName}
           />
           <Button variant="outlined" color="neutral" onClick={() => setOpen(true)}>
-            Ver Detalles
+            Show Details
           </Button>
         </Box>
       </Stack>

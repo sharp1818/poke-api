@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable dot-notation */
 import { useEffect, useState } from 'react';
 import Modal from '@mui/joy/Modal';
@@ -6,47 +7,38 @@ import Typography from '@mui/joy/Typography';
 import Sheet from '@mui/joy/Sheet';
 import axios from 'axios';
 
-interface ModalState {
-  open: boolean;
-  setOpen: any;
-  pokemonId: string;
-}
-interface PokemonInfo {
-  name: number;
-  height: string;
-  weight: string;
-  types: Array<Object>;
-  sprites: Array<Object>;
-}
 
-function MoldaComponent({ open, setOpen, pokemonId }: ModalState) {
+function ModalComponent({ open, setOpen, pokemonId }) {
   const apiUrl = process.env.REACT_APP_API_URL;
   const fetchUrl = `${apiUrl}/${pokemonId}/`;
-  const [info, setInfo] = useState([{}]);
+  const [info, setInfo] = useState({
+    name: '',
+    height: '',
+    weight: '',
+    types: [{}]
+  });
   const fetchpokemoninfo = async () => {
     try {
       const res = await axios.get(`${fetchUrl}`);
-      const pokemonData: Array<PokemonInfo> = [
-        {
-          name: res.data.name,
-          height: res.data.height,
-          weight: res.data.weight,
-          types: res.data.types,
-          sprites: res.data.sprites
-        }
-      ];
+      const pokemonData = {
+        name: res.data.name,
+        height: res.data.height,
+        weight: res.data.weight,
+        types: res.data.types,
+        sprites: res.data.sprites
+      };
       setInfo(pokemonData);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
-  console.log(info);
 
   useEffect(() => {
     if (pokemonId && open === true) {
       fetchpokemoninfo();
     }
   }, [open]);
+  // console.log(info);
 
   return (
     <Modal
@@ -79,16 +71,22 @@ function MoldaComponent({ open, setOpen, pokemonId }: ModalState) {
           level="h4"
           textColor="inherit"
           fontWeight="lg"
+          textTransform="capitalize"
           mb={1}>
           {info['name']}
         </Typography>
         <Typography id="modal-desc" textColor="text.tertiary">
-          Make sure to use <code>aria-labelledby</code> on the modal dialog with an optional{' '}
-          <code>aria-describedby</code> attribute.
+          Height: {info['height']}
         </Typography>
+        <Typography id="modal-desc" textColor="text.tertiary">
+          Weight: {info['weight']}
+        </Typography>
+        {info['types'].map((x) => (
+          <div>{x.slot}</div>
+        ))}
       </Sheet>
     </Modal>
   );
 }
 
-export default MoldaComponent;
+export default ModalComponent;
