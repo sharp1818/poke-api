@@ -88,14 +88,14 @@ function CardComponent({ pokemonName, url }: Pokemon) {
         variant="soft"
         color="neutral"
         onClick={() => {
-          AddFav(pokemonName, url, favs, setFavs);
+          AddFav(pokemonId, url, pokemonName, favs, setFavs);
         }}
         sx={{
           borderRadius: '0px 6px 6px 0px',
           width: '4.25rem',
           opacity: '0.8'
         }}>
-        {CheckFav(pokemonName, favs) ? (
+        {CheckFav(pokemonId, favs) ? (
           <FavoriteIcon sx={{ color: '#DD0031' }} />
         ) : (
           <FavoriteBorder sx={{ color: '#DD0031' }} />

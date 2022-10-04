@@ -1,10 +1,11 @@
 import './App.scss';
 import { Navigate, Routes, Route, Link, useLocation } from 'react-router-dom';
 import Box from '@mui/joy/Box';
-import Header from './layout';
+import Header from './layout/header';
 import ButtonComponent from './components/buttonComponent';
 import AllPokemons from './pages/all-pokemons';
 import FavPokemons from './pages/fav-pokemons';
+import Footer from './layout/footer';
 
 function App() {
   const location = useLocation();
@@ -26,6 +27,8 @@ function App() {
         <Route path="/all" element={<AllPokemons />} />
         <Route path="/my-faves" element={<FavPokemons />} />
       </Routes>
+      <div className="wrap-container" />
+      <Footer />
     </div>
   );
 }

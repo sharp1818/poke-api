@@ -5,10 +5,14 @@ import Modal from '@mui/joy/Modal';
 import ModalClose from '@mui/joy/ModalClose';
 import Typography from '@mui/joy/Typography';
 import Sheet from '@mui/joy/Sheet';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import axios from 'axios';
+import Box from '@mui/joy/Box';
+import './modalComponent.scss';
 
 function ModalComponent({ open, setOpen, pokemonId }) {
   const apiUrl = process.env.REACT_APP_API_URL;
+  const IMAGE_URL = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonId}.png`;
   const fetchUrl = `${apiUrl}/${pokemonId}/`;
   const [info, setInfo] = useState({
     name: '',
@@ -23,7 +27,7 @@ function ModalComponent({ open, setOpen, pokemonId }) {
         name: res.data.name,
         height: res.data.height,
         weight: res.data.weight,
-        types: res.data.types,
+        types: res.data.types.map((type) => type.type),
         sprites: res.data.sprites
       };
       setInfo(pokemonData);
@@ -37,7 +41,6 @@ function ModalComponent({ open, setOpen, pokemonId }) {
       fetchpokemoninfo();
     }
   }, [open]);
-  // console.log(info);
 
   return (
     <Modal
@@ -74,15 +77,31 @@ function ModalComponent({ open, setOpen, pokemonId }) {
           mb={1}>
           {info['name']}
         </Typography>
-        <Typography id="modal-desc" textColor="text.tertiary">
+        <Box
+          className="image-container"
+          component="img"
+          src={pokemonId !== '' && IMAGE_URL}
+          alt={pokemonId}
+        />
+        <Typography id="modal-desc" textColor="text.tertiary" fontSize="18px">
           Height: {info['height']}
         </Typography>
-        <Typography id="modal-desc" textColor="text.tertiary">
+        <Typography id="modal-desc" textColor="text.tertiary" fontSize="18px">
           Weight: {info['weight']}
         </Typography>
-        {info['types'].map((x) => (
-          <div key={x['slot']}>{x['slot']}</div>
-        ))}
+        <Typography
+          id="modal-desc"
+          textColor="text.tertiary"
+          textTransform="capitalize"
+          fontSize="18px">
+          Types:
+          {info['types'].map((type) => (
+            <div className="types-container" key={type['slot']}>
+              <KeyboardArrowRightIcon />
+              {type['name']}
+            </div>
+          ))}
+        </Typography>
       </Sheet>
     </Modal>
   );

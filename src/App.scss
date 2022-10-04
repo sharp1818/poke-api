@@ -1,4 +1,11 @@
-.App > .JoyBox-root {
-  display: flex;
-  justify-content: center;
+.App{
+  position: relative;
+  min-height: 100vh;
+  .JoyBox-root {
+    display: flex;
+    justify-content: center;
+  }
+} 
+.wrap-container{
+  height: 96px;
 }
