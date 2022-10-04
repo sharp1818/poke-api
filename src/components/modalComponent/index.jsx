@@ -7,7 +7,6 @@ import Typography from '@mui/joy/Typography';
 import Sheet from '@mui/joy/Sheet';
 import axios from 'axios';
 
-
 function ModalComponent({ open, setOpen, pokemonId }) {
   const apiUrl = process.env.REACT_APP_API_URL;
   const fetchUrl = `${apiUrl}/${pokemonId}/`;
@@ -82,7 +81,7 @@ function ModalComponent({ open, setOpen, pokemonId }) {
           Weight: {info['weight']}
         </Typography>
         {info['types'].map((x) => (
-          <div>{x.slot}</div>
+          <div key={x['slot']}>{x['slot']}</div>
         ))}
       </Sheet>
     </Modal>
